@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DinkToPdfResults\**" />
+    <Compile Remove="GemBoxResults\**" />
+    <Compile Remove="IronResults\**" />
+    <Compile Remove="IText7Results\**" />
+    <EmbeddedResource Remove="DinkToPdfResults\**" />
+    <EmbeddedResource Remove="GemBoxResults\**" />
+    <EmbeddedResource Remove="IronResults\**" />
+    <EmbeddedResource Remove="IText7Results\**" />
+    <None Remove="DinkToPdfResults\**" />
+    <None Remove="GemBoxResults\**" />
+    <None Remove="IronResults\**" />
+    <None Remove="IText7Results\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ve-A626.tmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="GemBox.Document" Version="33.0.1108" />
+    <PackageReference Include="GemBox.Pdf" Version="15.0.1077" />
+    <PackageReference Include="IronPdf.Assets.Rendering.Universal" Version="21.0.0" />
+    <PackageReference Include="itext7" Version="7.1.14" />
+    <PackageReference Include="itext7.pdfhtml" Version="3.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PDF.Core" Version="2020.12.2" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
+    <PackageReference Include="TXTextControl.ReportingCloud" Version="1.205.500" />
+  </ItemGroup>
+
+</Project>
