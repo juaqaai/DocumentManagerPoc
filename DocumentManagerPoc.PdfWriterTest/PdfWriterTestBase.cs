@@ -8,6 +8,8 @@ namespace DocumentManagerPoc.PdfWriterTest
 {
     public class PdfWriterTestBase
     {
+        private CompetitionResult _competitionResult;
+
         public PdfWriterTestBase()
         {
             var path = Path.GetFullPath(Path.Combine(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."), "Logs/log.txt"));
@@ -30,8 +32,12 @@ namespace DocumentManagerPoc.PdfWriterTest
 
         protected CompetitionResult GetCompetitionResult()
         {
-            var repository = new Repository();
-            return repository.GetCompetitionResult();
+            if (_competitionResult == null)
+            {
+                var repository = new Repository();
+                _competitionResult = repository.GetCompetitionResult();
+            }
+            return _competitionResult;
         }
 
         private void WriteToLog(string logMessage, TimeSpan elapsed)

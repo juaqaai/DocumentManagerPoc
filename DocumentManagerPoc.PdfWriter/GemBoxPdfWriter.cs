@@ -20,12 +20,21 @@ namespace DocumentManagerPoc.PdfWriter
 
         public void Create10000PdfFile(CompetitionResult competitionResult)
         {
+            int competitionResultPerPage = 3;
+            int pageNumber = 1;
             for (int i = 1; i <= 10000; i++)
             {
-                var pageNumber = i >= competitionResult.total ? competitionResult.page : competitionResult.page;
+                if (pageNumber >= competitionResult.total_pages)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    pageNumber++;
+                }
 
-                var matches = competitionResult.data.Skip(competitionResult.per_page * (pageNumber - 1))
-                                                    .Take(competitionResult.per_page).ToList();
+                var matches = competitionResult.data.Skip(competitionResultPerPage * (pageNumber - 1))
+                                                    .Take(competitionResultPerPage).ToList();
 
                 CreatePdfFile(matches, Path.Combine(relativePath, $"{FileName}_{i}.pdf"));
             }
@@ -33,7 +42,7 @@ namespace DocumentManagerPoc.PdfWriter
 
         public void CreatePdfFile(CompetitionResult competitionResult)
         {
-            CreatePdfFile(competitionResult.data, Path.Combine(relativePath, $"{FileName}.pdf"));
+            CreatePdfFile(competitionResult.data.Take(3).ToList(), Path.Combine(relativePath, $"{FileName}.pdf"));
         }
 
         private void CreatePdfFile(List<Match> matches, string relativeFilePath)

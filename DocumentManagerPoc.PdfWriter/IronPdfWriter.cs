@@ -20,9 +20,17 @@ namespace DocumentManagerPoc.PdfWriter
 
         public void Create10000PdfFile(CompetitionResult competitionResult)
         {
+            int pageNumber = 1;
             for (int i = 1; i <= 10000; i++)
             {
-                var pageNumber = i >= competitionResult.total ? competitionResult.page : competitionResult.page;
+                if (pageNumber >=  competitionResult.total_pages)
+                {
+                    pageNumber = 1;
+                }
+                else 
+                {
+                    pageNumber++;
+                }
 
                 var matches = competitionResult.data.Skip(competitionResult.per_page * (pageNumber - 1))
                                                     .Take(competitionResult.per_page).ToList();
